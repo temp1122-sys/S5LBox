@@ -759,8 +759,6 @@ const char *ios3_kernel_patch_status_string(
         return "raw mdev uiomove target mismatch";
     case IOS3_KERNEL_PATCH_STATUS_PATCH_TRANSACTION_FAILED:
         return "kernel patch transaction failed";
-    case IOS3_KERNEL_PATCH_SITE_ABORT_IRQ_GUARD:
-        return "sleh_abort interrupt-context guard";
     default: return "unknown iOS 3 kernel patch status";
     }
 }
@@ -781,6 +779,7 @@ const char *ios3_kernel_patch_site_string(uint32_t site) {
     case IOS3_KERNEL_PATCH_SITE_MD_COUNT64: return "mdev block count 64";
     case IOS3_KERNEL_PATCH_SITE_MD_COUNT32: return "mdev block count 32";
     case IOS3_KERNEL_PATCH_NO_SITE: return "none";
+    case IOS3_KERNEL_PATCH_SITE_ABORT_IRQ_GUARD: return "sleh_abort interrupt-context guard";
     default: return "unknown kernel patch site";
     }
 }
