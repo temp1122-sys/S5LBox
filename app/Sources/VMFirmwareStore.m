@@ -25,7 +25,7 @@ static NSString *selectedGeneration(NSString *root) {
     // Availability only; boot independently authenticates contents. Imports may
     // publish only after the C pipeline's complete SHA-256 verification.
     NSDictionary<NSString *, NSNumber *> *sizes = @{
-        @"kernel.macho": @7942144, @"devicetree.bin": @40544, @"rootfs.img": @433274880
+        @"kernel.macho": @7921664, @"devicetree.bin": @41440, @"rootfs.img": @712994816
     };
     for (NSString *name in sizes) {
         NSDictionary *info = [NSFileManager.defaultManager attributesOfItemAtPath:
