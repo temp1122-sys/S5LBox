@@ -22,7 +22,7 @@ static NSString *testRoot;
 @end
 
 static void makeSet(NSString *path) {
-    NSDictionary *sizes = @{@"kernel.macho": @7942144, @"devicetree.bin": @40544, @"rootfs.img": @433274880};
+    NSDictionary *sizes = @{@"kernel.macho": @7921664, @"devicetree.bin": @41440, @"rootfs.img": @712994816};
     for (NSString *name in sizes) {
         NSString *file = [path stringByAppendingPathComponent:name];
         int fd = open(file.fileSystemRepresentation, O_RDWR | O_CREAT | O_EXCL, 0600);
@@ -67,7 +67,7 @@ int main(int argc, const char *argv[]) {
         assert([fm removeItemAtPath:pointer error:NULL]);
         assert([VMFirmwareStore publishDirectory:second inRoot:testRoot error:NULL]);
 
-        NSString *archive = [testRoot stringByAppendingPathComponent:@"renamed-iPhone1,2_3.1.3_7E18.ipsw"];
+        NSString *archive = [testRoot stringByAppendingPathComponent:@"renamed-iPhone1,2_4.0_8A293.ipsw"];
         assert([@"not a zip" writeToFile:archive atomically:YES encoding:NSUTF8StringEncoding error:NULL]);
         NSSet *filesBefore = [NSSet setWithArray:[fm contentsOfDirectoryAtPath:testRoot error:NULL]];
         TestImporter *importer = [TestImporter new];
