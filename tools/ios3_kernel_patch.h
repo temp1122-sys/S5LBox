@@ -48,7 +48,7 @@
 /* Smallest RAM aperture, starting at IOS3_KERNEL_PATCH_RAM_BASE, that contains
  * every byte of every file-backed segment in the supported kernel. Real boots
  * use the full 128 MiB aperture. */
-#define IOS3_KERNEL_PATCH_MIN_RAM_SIZE ((size_t)UINT32_C(0x007d1000))
+#define IOS3_KERNEL_PATCH_MIN_RAM_SIZE ((size_t)UINT32_C(0x007c4000))
 
 #define IOS3_KERNEL_PATCH_NO_SITE UINT32_MAX
 #define IOS3_KERNEL_PATCH_NO_SEGMENT UINT32_MAX
