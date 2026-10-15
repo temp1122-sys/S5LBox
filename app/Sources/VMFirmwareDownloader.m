@@ -5,7 +5,7 @@
 #include <math.h>
 
 NSNotificationName const VMFirmwareDownloadDidChangeNotification = @"VMFirmwareDownloadDidChangeNotification";
-static NSString *const MetadataURL = @"https://api.ipsw.me/v4/ipsw/iPhone1,2/7E18";
+static NSString *const MetadataURL = @"https://api.ipsw.me/v4/ipsw/iPhone1,2/8A293";
 static const NSUInteger MetadataLimit = 64 * 1024;
 static const uint64_t ArchiveLimit = 512ull * 1024 * 1024;
 
@@ -26,9 +26,9 @@ static NSError *DownloadError(NSString *message) {
     id json = data.length && data.length <= MetadataLimit
         ? [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL] : nil;
     if (![json isKindOfClass:NSDictionary.class] ||
-        ![json[@"identifier"] isEqual:@"iPhone1,2"] || ![json[@"version"] isEqual:@"3.1.3"] ||
-        ![json[@"buildid"] isEqual:@"7E18"]) {
-        if (error) *error = DownloadError(@"Firmware information is unavailable or doesn’t match iPhone OS 3.1.3. Try again or import an IPSW.");
+        ![json[@"identifier"] isEqual:@"iPhone1,2"] || ![json[@"version"] isEqual:@"4.0"] ||
+        ![json[@"buildid"] isEqual:@"8A293"]) {
+        if (error) *error = DownloadError(@"Firmware information is unavailable or doesn’t match iPhone OS 4.0. Try again or import an IPSW.");
         return nil;
     }
     NSString *hash = [json[@"sha256sum"] isKindOfClass:NSString.class] ? [json[@"sha256sum"] lowercaseString] : nil;
@@ -264,7 +264,7 @@ static NSError *DownloadError(NSString *message) {
         if (![NSFileManager.defaultManager createDirectoryAtURL:_attempt withIntermediateDirectories:NO attributes:nil error:&error]) {
             _attempt = nil; [self finish:error cancelled:NO]; return;
         }
-        self.archiveURL = [_attempt URLByAppendingPathComponent:@"iPhone1,2_3.1.3_7E18_Restore.ipsw"];
+        self.archiveURL = [_attempt URLByAppendingPathComponent:@"iPhone1,2_4.0_8A293_Restore.ipsw"];
         _output = [NSOutputStream outputStreamWithURL:self.archiveURL append:NO];
         [_output open];
         if (_output.streamStatus != NSStreamStatusOpen || !ios3_sha256_init(&_digest)) {
