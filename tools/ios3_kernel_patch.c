@@ -320,12 +320,19 @@ static ios3_kernel_patch_status_t validate_topology(
         }
     }
 
-    if (macho->vm_low != IOS3_KERNEL_PATCH_VIRT_BASE) {
+    if (macho->vm_low != UINT32_C(0x80001000)) {
+    return segment_failure(
+        report, IOS3_KERNEL_PATCH_STATUS_VM_RANGE_MISMATCH,
+        IOS3_KERNEL_PATCH_NO_SEGMENT, 0u,
+        UINT32_C(0x80001000), macho->vm_low);
+    }
+
+    /*if (macho->vm_low != IOS3_KERNEL_PATCH_VIRT_BASE) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_VM_RANGE_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 0u,
             IOS3_KERNEL_PATCH_VIRT_BASE, macho->vm_low);
-    }
+    }*/
     if (macho->vm_high != UINT32_C(0x807c5000)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_VM_RANGE_MISMATCH,
