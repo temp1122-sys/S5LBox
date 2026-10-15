@@ -53,7 +53,7 @@
  * are the ones that boot. They are exposed rather than hidden so a test can
  * assert against the constant instead of against a copy of it.
  */
-#define S5L_BRINGUP_VIRT_BASE      UINT32_C(0xc0000000)
+#define S5L_BRINGUP_VIRT_BASE      UINT32_C(0x80001000)
 #define S5L_BRINGUP_PHYS_BASE      UINT32_C(0x08000000)
 #define S5L_BRINGUP_RAM_SIZE       UINT32_C(0x08000000)   /* 128 MB, as the hardware */
 
