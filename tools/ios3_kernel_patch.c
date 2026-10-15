@@ -131,15 +131,15 @@ typedef struct {
 } expected_segment_t;
 
 static const expected_segment_t expected_segments[] = {
-    {"__TEXT",          0xc0008000u, 0x00205000u, 0x00000000u, 0x00205000u},
-    {"__DATA",          0xc020d000u, 0x00053000u, 0x00205000u, 0x00018000u},
-    {"__HIB",           0xc0000000u, 0x00005000u, 0x0021d000u, 0x00005000u},
-    {"__KLD",           0xc0260000u, 0x00001000u, 0x00222000u, 0x00001000u},
-    {"__LAST",          0xc0261000u, 0x00000000u, 0x00223000u, 0x00000000u},
-    {"__PRELINK_TEXT",  0xc02cd000u, 0x004c8000u, 0x0028f000u, 0x004c8000u},
-    {"__PRELINK_STATE", 0xc0261000u, 0x00000000u, 0x00223000u, 0x00000000u},
-    {"__PRELINK_INFO",  0xc0795000u, 0x0003c000u, 0x00757000u, 0x0003c000u},
-    {"__LINKEDIT",      0xc0261000u, 0x0006b5a4u, 0x00223000u, 0x0006b5a4u}
+    {"__TEXT",          0x80001000u, 0x0023f000u, 0x00000000u, 0x0023f000u},
+    {"__DATA",          0x80240000u, 0x00052000u, 0x0023f000u, 0x0001c000u},
+    {"__KLD",           0x80292000u, 0x00002000u, 0x0025b000u, 0x00002000u},
+    {"__LAST",          0x80294000u, 0x00000000u, 0x0025d000u, 0x00000000u},
+    {"__PRELINK_TEXT",  0x802c3000u, 0x004ba000u, 0x0028c000u, 0x004ba000u},
+    {"__PRELINK_STATE", 0x80294000u, 0x00000000u, 0x0025d000u, 0x00000000u},
+    {"__PRELINK_INFO",  0x8077d000u, 0x00048000u, 0x00746000u, 0x00048000u},
+    {"__CTF",           0x80294000u, 0x00000000u, 0x0028bb88u, 0x0002c8f4u},
+    {"__LINKEDIT",      0x80294000u, 0x0002eb88u, 0x0025d000u, 0x0002eb88u}
 };
 
 bool ios3_kernel_patch_sha256(
@@ -330,14 +330,14 @@ static ios3_kernel_patch_status_t validate_topology(
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_VM_RANGE_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 1u,
-            UINT32_C(0xc07d1000), macho->vm_high);
+            UINT32_C(0x807c5000), macho->vm_high);
     }
     if (!macho->has_entry) {
         return simple_failure(report,
                               IOS3_KERNEL_PATCH_STATUS_ENTRYPOINT_MISSING,
                               1u, 0u);
     }
-    if (macho->entry != UINT32_C(0xc0069040)) {
+    if (macho->entry != UINT32_C(0x80066050)) {
         return simple_failure(report,
                               IOS3_KERNEL_PATCH_STATUS_ENTRYPOINT_MISMATCH,
                               UINT32_C(0xc0069040), macho->entry);
@@ -352,25 +352,25 @@ static ios3_kernel_patch_status_t validate_topology(
                               IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISSING,
                               1u, 0u);
     }
-    if (macho->symoff != UINT32_C(0x00223000)) {
+    if (macho->symoff != UINT32_C(0x0025d000)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 0u,
             UINT32_C(0x00223000), macho->symoff);
     }
-    if (macho->nsyms != UINT32_C(11431)) {
+    if (macho->nsyms != UINT32_C(4389)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 1u,
             UINT32_C(11431), macho->nsyms);
     }
-    if (macho->stroff != UINT32_C(0x002447d4)) {
+    if (macho->stroff != UINT32_C(0x00269dbc)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 2u,
             UINT32_C(0x002447d4), macho->stroff);
     }
-    if (macho->strsize != UINT32_C(0x00049dd0)) {
+    if (macho->strsize != UINT32_C(0x00021dcc)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 3u,
