@@ -604,7 +604,7 @@ static void vmfw_strip_trailing_slash(char *path) {
     cfg.cancel       = vmfw_cancel_cb;
     cfg.cancel_ctx   = _state;
     cfg.resolve_keys = vm_fw_resolve_public_keys;
-    cfg.require_supported = true;
+    cfg.require_supported = false;
 
     vm_fw_status_t status = vm_fw_import_run(&cfg, report);
 
