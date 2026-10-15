@@ -1,6 +1,6 @@
 /* Public firmware key catalog. Copyright (c) 2026 j0shua-SYSON. MIT licensed.
  * Facts transcribed from The Apple Wiki, revision 206002 (2024-01-23):
- * https://theapplewiki.com/index.php?title=Keys:SUNorthstarTwo_7E18_(iPhone1,2)&oldid=206002
+ * https://theapplewiki.com/index.php?title=Keys:SUNorthstarTwo_8A293_(iPhone1,2)&oldid=206002
  * Only the three components used by S5LBox are listed. Rootfs uses the published
  * AES+HMAC blob; its per-block IV is derived by the DMG reader, not a fixed IV.
  * Add builds as separate records with independent identity and boot validation.
@@ -14,14 +14,14 @@ typedef struct {
 } public_keys_t;
 
 static const public_keys_t catalog[] = {
-    { "iPhone1,2", "3.1.3", "7E18", "n82ap", "s5l8900x",
-      "d0dfac22c03212f8a75fc9c69fe548b6", "31e711201cf4dcf47be5be2a5b1b87a1",
-      "9532919c4b4ff636f0559ff25be64f35", "77cbb8d3e874efa1364cab1bbd38a8fc",
-      "bf5eb72cd65e9c37cf9920707cb6b4f7ecc10b38cfec6b167002ac9fd6a3ab6643e45005" }
+    { "iPhone1,2", "4.0", "8A293", "n82ap", "s5l8900x",
+      "3861ea3f4b0e926552e6407fb33047ff", "0182586ff40f56d59148020a5660a3c2",
+      "16e89af7c2de01c82ad0ff35c9aafce1", "d80c4925442c069c64b72829f0b0261e",
+      "09e054a8dd6c11c7f41ad9e614a8d564aa7d0c653585f29c0b07d1f0a1e1dc0040624a16" }
 };
 
 const char *vm_fw_public_keys_source(void) {
-    return "https://theapplewiki.com/index.php?title=Keys:SUNorthstarTwo_7E18_(iPhone1,2)&oldid=206002";
+    return "https://theapplewiki.com/index.php?title=Keys:SUNorthstarTwo_8A293_(iPhone1,2)&oldid=206002";
 }
 
 bool vm_fw_resolve_public_keys(const vm_fw_report_t *id, vm_fw_keys_t *out) {
