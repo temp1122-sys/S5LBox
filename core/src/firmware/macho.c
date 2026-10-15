@@ -68,11 +68,22 @@ macho_status_t macho_parse(const uint8_t *buf, size_t len, macho_t *out) {
             s->vmsize    = rd32(buf + off + 28);
             s->fileoff   = rd32(buf + off + 32);
             s->filesize  = rd32(buf + off + 36);
-
             /* The segment's file extent must actually be inside the image. */
             if ((uint64_t)s->fileoff + s->filesize > (uint64_t)len)
                 return MACHO_ERR_MALFORMED;
-            if (s->filesize > s->vmsize) return MACHO_ERR_MALFORMED;
+
+            /* iOS 4 kernels may contain a file-only __CTF metadata segment. */
+            bool file_only_ctf =
+                s->vmsize == 0 &&
+                s->filesize != 0 &&
+                strcmp(s->name, "__CTF") == 0;
+
+            if (s->filesize > s->vmsize && !file_only_ctf)
+                return MACHO_ERR_MALFORMED;
+            /*The segment's file extent must actually be inside the image.
+            if ((uint64_t)s->fileoff + s->filesize > (uint64_t)len)
+                return MACHO_ERR_MALFORMED;
+            if (s->filesize > s->vmsize) return MACHO_ERR_MALFORMED;*/
 
             if (s->vmsize) {
                 if (s->vmaddr < out->vm_low) out->vm_low = s->vmaddr;
