@@ -86,6 +86,16 @@ static const guest_patch_entry_t kernel_patches[] = {
         .replacement = {0xf2u, 0x00u, 0x00u, 0xefu}
     },
     {
+        /*
+         * Debug-only: bypass sleh_abort's "abort at interrupt context" panic
+         * so XNU can continue into its normal abort diagnostics.
+         */
+        .virtual_address = IOS3_KERNEL_PATCH_ABORT_IRQ_GUARD_VA,
+        .length = 4u,
+        .expected = {0x06u, 0x01u, 0x00u, 0x1au},
+        .replacement = {0x00u, 0x00u, 0xa0u, 0xe1u}
+    },
+    {
         .virtual_address = IOS3_KERNEL_PATCH_MD_REGISTER_VA,
         .length = 2u, .expected = {0x01u, 0x0bu},
         .replacement = {0xe5u, 0xdfu}
@@ -749,6 +759,8 @@ const char *ios3_kernel_patch_status_string(
         return "raw mdev uiomove target mismatch";
     case IOS3_KERNEL_PATCH_STATUS_PATCH_TRANSACTION_FAILED:
         return "kernel patch transaction failed";
+    case IOS3_KERNEL_PATCH_SITE_ABORT_IRQ_GUARD:
+        return "sleh_abort interrupt-context guard";
     default: return "unknown iOS 3 kernel patch status";
     }
 }
