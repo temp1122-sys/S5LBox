@@ -75,7 +75,7 @@
 /* Exact 7E18 _mdevCMajor, assigned by cdevsw_add rather than fixed at 9.
  * The firmware gate pins the kernel containing this global. */
 #define S5L_BRINGUP_MD_RAW_MAJOR_VA     UINT32_C(0xc0216108)
-#define S5L_BRINGUP_USER_ADDRESS_LIMIT  UINT32_C(0xc0000000)
+#define S5L_BRINGUP_USER_ADDRESS_LIMIT  UINT32_C(0x80001000)
 
 /*
  * The four Thumb SVC halfwords tools/ios3_kernel_patch.c writes over the two
