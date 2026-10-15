@@ -10,7 +10,7 @@ static NSString *fixtureMode;
 static NSString *archiveHash;
 static NSString *const AppleURL = @"https://secure-appldnld.apple.com/test.ipsw";
 static NSMutableDictionary *metadata(void) {
-    return [@{@"identifier":@"iPhone1,2", @"version":@"3.1.3", @"buildid":@"7E18",
+    return [@{@"identifier":@"iPhone1,2", @"version":@"4.0", @"buildid":@"8A293",
         @"sha256sum":archiveHash, @"filesize":@(payload.length), @"url":AppleURL} mutableCopy];
 }
 static NSData *json(id value) { return [NSJSONSerialization dataWithJSONObject:value options:0 error:NULL]; }
@@ -102,7 +102,7 @@ static void checkMetadata(void) {
         @{@"identifier":@"iPhone2,1"}, @{@"version":@"6.1.6"}, @{@"buildid":@"other"},
         @{@"sha256sum":@"bad"}, @{@"sha256sum":NSNull.null}, @{@"filesize":@0},
         @{@"filesize":@YES}, @{@"filesize":@(-1)}, @{@"filesize":@1.5},
-        @{@"filesize":@(1024ull * 1024 * 1024)}, @{@"filesize":@"239139281"},
+        @{@"filesize":@(1024ull * 1024 * 1024)}, @{@"filesize":@"306274631"},
         @{@"url":@"http://secure-appldnld.apple.com/test.ipsw"},
         @{@"url":@"https://secure-appldnld.apple.com.example.com/test.ipsw"},
         @{@"url":@"https://user:password@secure-appldnld.apple.com/test.ipsw"},
