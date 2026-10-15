@@ -326,7 +326,7 @@ static ios3_kernel_patch_status_t validate_topology(
             IOS3_KERNEL_PATCH_NO_SEGMENT, 0u,
             IOS3_KERNEL_PATCH_VIRT_BASE, macho->vm_low);
     }
-    if (macho->vm_high != UINT32_C(0xc07d1000)) {
+    if (macho->vm_high != UINT32_C(0x807c5000)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_VM_RANGE_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 1u,
@@ -340,7 +340,7 @@ static ios3_kernel_patch_status_t validate_topology(
     if (macho->entry != UINT32_C(0x80066050)) {
         return simple_failure(report,
                               IOS3_KERNEL_PATCH_STATUS_ENTRYPOINT_MISMATCH,
-                              UINT32_C(0xc0069040), macho->entry);
+                              UINT32_C(0x80066050), macho->entry);
     }
     if (macho->entry_sp != 0u) {
         return simple_failure(report,
@@ -356,25 +356,25 @@ static ios3_kernel_patch_status_t validate_topology(
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 0u,
-            UINT32_C(0x00223000), macho->symoff);
+            UINT32_C(0x0025d000), macho->symoff);
     }
     if (macho->nsyms != UINT32_C(4389)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 1u,
-            UINT32_C(11431), macho->nsyms);
+            UINT32_C(4389), macho->nsyms);
     }
     if (macho->stroff != UINT32_C(0x00269dbc)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 2u,
-            UINT32_C(0x002447d4), macho->stroff);
+            UINT32_C(0x00269dbc), macho->stroff);
     }
     if (macho->strsize != UINT32_C(0x00021dcc)) {
         return segment_failure(
             report, IOS3_KERNEL_PATCH_STATUS_SYMTAB_MISMATCH,
             IOS3_KERNEL_PATCH_NO_SEGMENT, 3u,
-            UINT32_C(0x00049dd0), macho->strsize);
+            UINT32_C(0x00021dcc), macho->strsize);
     }
     return IOS3_KERNEL_PATCH_STATUS_OK;
 }
