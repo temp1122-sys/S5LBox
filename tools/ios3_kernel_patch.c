@@ -41,13 +41,13 @@ static const guest_patch_entry_t kernel_patches[] = {
     {
         .virtual_address = IOS3_KERNEL_PATCH_MD_READ_VA,
         .length = 4u,
-        .expected = {0xefu, 0xf7u, 0x12u, 0xf9u},
+        .expected = {0xeeu, 0xf7u, 0x97u, 0xfeu},
         .replacement = {0xe1u, 0xdfu, 0xc0u, 0x46u}
     },
     {
         .virtual_address = IOS3_KERNEL_PATCH_MD_WRITE_VA,
         .length = 4u,
-        .expected = {0xefu, 0xf7u, 0xbfu, 0xf8u},
+        .expected = {0xeeu, 0xf7u, 0x44u, 0xfeu},
         .replacement = {0xe2u, 0xdfu, 0xc0u, 0x46u}
     },
     {
@@ -82,12 +82,12 @@ static const guest_patch_entry_t kernel_patches[] = {
          * batches reuse native allocation and enqueue without serial bytes. */
         .virtual_address = IOS3_KERNEL_PATCH_PACKET_BATCH_VA,
         .length = 4u,
-        .expected = {0x5eu, 0x01u, 0x00u, 0xeau},
+        .expected = {0x60u, 0x01u, 0x00u, 0xeau},
         .replacement = {0xf2u, 0x00u, 0x00u, 0xefu}
     },
     {
         .virtual_address = IOS3_KERNEL_PATCH_MD_REGISTER_VA,
-        .length = 2u, .expected = {0x12u, 0x0bu},
+        .length = 2u, .expected = {0x01u, 0x0bu},
         .replacement = {0xe5u, 0xdfu}
     },
     {
