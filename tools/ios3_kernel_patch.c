@@ -89,7 +89,7 @@ static const guest_patch_entry_t kernel_patches[] = {
         /*
          * Debug-only: bypass sleh_abort's "abort at interrupt context" panic
          * so XNU can continue into its normal abort diagnostics.
-         */
+         
         .virtual_address = IOS3_KERNEL_PATCH_ABORT_IRQ_GUARD_VA,
         .length = 4u,
         .expected = {0x06u, 0x01u, 0x00u, 0x1au},
@@ -100,7 +100,7 @@ static const guest_patch_entry_t kernel_patches[] = {
         .length = 4u,
         .expected = {0x00u, 0x20u, 0x93u, 0xe5u},
         .replacement = {0x00u, 0x20u, 0xa0u, 0xe3u}
-    },
+    },*/
     {
         .virtual_address = IOS3_KERNEL_PATCH_MD_REGISTER_VA,
         .length = 2u, .expected = {0x12u, 0x0bu},
@@ -785,7 +785,7 @@ const char *ios3_kernel_patch_site_string(uint32_t site) {
     case IOS3_KERNEL_PATCH_SITE_MD_COUNT64: return "mdev block count 64";
     case IOS3_KERNEL_PATCH_SITE_MD_COUNT32: return "mdev block count 32";
     case IOS3_KERNEL_PATCH_NO_SITE: return "none";
-    case IOS3_KERNEL_PATCH_SITE_ABORT_IRQ_GUARD: return "sleh_abort interrupt-context guard";
+    // case IOS3_KERNEL_PATCH_SITE_ABORT_IRQ_GUARD: return "sleh_abort interrupt-context guard";
     default: return "unknown kernel patch site";
     }
 }
