@@ -103,7 +103,7 @@ static const guest_patch_entry_t kernel_patches[] = {
     },
     {
         .virtual_address = IOS3_KERNEL_PATCH_MD_REGISTER_VA,
-        .length = 2u, .expected = {0x01u, 0x0bu},
+        .length = 2u, .expected = {0x12u, 0x0bu},
         .replacement = {0xe5u, 0xdfu}
     },
     {
