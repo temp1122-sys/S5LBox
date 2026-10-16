@@ -85,8 +85,8 @@ static const guest_patch_entry_t kernel_patches[] = {
         .expected = {0x60u, 0x01u, 0x00u, 0xeau},
         .replacement = {0xf2u, 0x00u, 0x00u, 0xefu}
     },
-    {
-        /*
+    /*{
+        
          * Debug-only: bypass sleh_abort's "abort at interrupt context" panic
          * so XNU can continue into its normal abort diagnostics.
          
